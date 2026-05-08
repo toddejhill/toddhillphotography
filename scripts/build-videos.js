@@ -2,9 +2,10 @@
 // web-optimized H.264 MP4s as <name>.mp4 next to them. The compressed output
 // is what gets committed to git; the .original.* source is gitignored.
 //
-// Encoding: H.264 high profile, CRF 25, capped at 1920x1080, AAC audio,
-// +faststart for streamable playback. Skips files whose output is newer
-// than their source (incremental).
+// Encoding: H.264 high profile, CRF 28, capped at 1280x720, AAC audio,
+// +faststart for streamable playback. Tuned to keep output under
+// Cloudflare Workers' 25 MiB per-asset limit. Skips files whose output is
+// newer than their source (incremental).
 //
 // Usage: npm run build  (chains from npm run build before build:dist)
 
@@ -24,12 +25,12 @@ const RAW_RE = /\.original\.(mp4|mov|webm|m4v)$/i;
 
 const FFMPEG_ARGS = [
   "-c:v", "libx264",
-  "-crf", "25",
+  "-crf", "28",
   "-preset", "slow",
-  "-vf", "scale='min(1920,iw)':'min(1080,ih)':force_original_aspect_ratio=decrease,scale=trunc(iw/2)*2:trunc(ih/2)*2",
+  "-vf", "scale='min(1280,iw)':'min(720,ih)':force_original_aspect_ratio=decrease,scale=trunc(iw/2)*2:trunc(ih/2)*2",
   "-pix_fmt", "yuv420p",
   "-c:a", "aac",
-  "-b:a", "128k",
+  "-b:a", "96k",
   "-movflags", "+faststart",
   "-y",
 ];
