@@ -2,6 +2,22 @@
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+// Mobile nav toggle
+const navToggle = document.querySelector(".nav-toggle");
+const primaryNav = document.getElementById("primary-nav");
+if (navToggle && primaryNav) {
+  navToggle.addEventListener("click", () => {
+    const open = primaryNav.classList.toggle("open");
+    navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  primaryNav.addEventListener("click", (e) => {
+    if (e.target.tagName === "A") {
+      primaryNav.classList.remove("open");
+      navToggle.setAttribute("aria-expanded", "false");
+    }
+  });
+}
+
 // ---------- Image protection ----------
 if (typeof PROTECT_IMAGES !== "undefined" && PROTECT_IMAGES) {
   document.addEventListener("contextmenu", (e) => {
@@ -212,6 +228,24 @@ if (tabsEl && galleryEl && typeof GALLERIES !== "undefined") {
       stage.innerHTML = `<div class="lightbox-media-wrap"><img class="lightbox-media" src="${fallback}" srcset="${srcset}" sizes="90vw" alt="${caption}" oncontextmenu="return false;" draggable="false" />${wm}</div>`;
     }
     lightbox.querySelector(".lightbox-caption").textContent = caption;
+    maybeShowRotateHint(item);
+  }
+
+  function maybeShowRotateHint(item) {
+    if (!lightbox || isVideo(item)) return;
+    if (window.innerWidth > 700) return;
+    if (window.innerHeight <= window.innerWidth) return;
+    const img = lightbox.querySelector("img.lightbox-media");
+    if (!img) return;
+    const trigger = () => {
+      if (img.naturalWidth > img.naturalHeight) {
+        lightbox.classList.remove("show-rotate-hint");
+        void lightbox.offsetWidth;
+        lightbox.classList.add("show-rotate-hint");
+      }
+    };
+    if (img.complete && img.naturalWidth) trigger();
+    else img.addEventListener("load", trigger, { once: true });
   }
 
   function step(delta) {
@@ -234,6 +268,7 @@ if (tabsEl && galleryEl && typeof GALLERIES !== "undefined") {
       if (e.key === "ArrowLeft") step(-1);
       if (e.key === "ArrowRight") step(1);
     });
+    window.addEventListener("orientationchange", () => lightbox.classList.remove("show-rotate-hint"));
   }
 
   renderTabs();

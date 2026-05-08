@@ -17,7 +17,10 @@
 <body class="home">
 <header class="site-header">
   <a href="index.html" class="logo">Todd Hill</a>
-  <nav>
+  <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
+    <span></span><span></span><span></span>
+  </button>
+  <nav id="primary-nav">
     <a href="index.html" class="active">Home</a>
     <a href="portfolio.html">Portfolio</a>
     <a href="about.html">About</a>
@@ -26,7 +29,7 @@
 </header>
 
 <section class="hero">
-  <div class="hero-image" style="background-image:url('https://picsum.photos/id/1018/1920/1080');"></div>
+  <div class="hero-image" style="background-image:url('images/_generated/1920/site/Milos_Summer_2024_002.jpg');"></div>
   <div class="hero-content">
     <h1>Journey of a Lifetime</h1>
     <p>Photography by Todd Hill</p>
@@ -34,19 +37,10 @@
   </div>
 </section>
 
-<section class="featured">
-  <h2>Featured Work</h2>
-  <div class="featured-grid" id="featured-grid"></div>
-  <div class="featured-cta">
-    <a href="portfolio.html" class="link-arrow">See the full portfolio &rarr;</a>
-  </div>
-</section>
-
 <footer class="site-footer">
   <p>&copy; <span id="year"></span> Todd Hill. All images are copyrighted.</p>
 </footer>
 
-<script src="data/galleries.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
