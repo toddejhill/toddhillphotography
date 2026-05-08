@@ -5,7 +5,7 @@
 //
 // Usage: npm run build:dist  (typically chained from npm run build)
 
-import { rm, mkdir, cp } from "node:fs/promises";
+import { rm, mkdir, cp, readdir, stat } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -39,7 +39,27 @@ async function main() {
   const genDst = path.join(DIST, "images", "_generated");
   await cp(genSrc, genDst, { recursive: true });
 
+  // Videos pass through unprocessed (no resize pipeline for video).
+  await copyVideos(path.join(ROOT, "images"), path.join(DIST, "images"));
+
   console.log(`[dist] Copied site files into ${path.relative(ROOT, DIST)}/`);
+}
+
+const VIDEO_EXT = new Set([".mp4", ".webm", ".mov", ".m4v"]);
+
+async function copyVideos(srcDir, dstDir) {
+  const entries = await readdir(srcDir, { withFileTypes: true });
+  for (const entry of entries) {
+    if (entry.name === "_generated") continue;
+    const srcPath = path.join(srcDir, entry.name);
+    const dstPath = path.join(dstDir, entry.name);
+    if (entry.isDirectory()) {
+      await copyVideos(srcPath, dstPath);
+    } else if (VIDEO_EXT.has(path.extname(entry.name).toLowerCase())) {
+      await mkdir(path.dirname(dstPath), { recursive: true });
+      await cp(srcPath, dstPath);
+    }
+  }
 }
 
 main().catch((err) => {

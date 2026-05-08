@@ -72,9 +72,11 @@ function thumbHTML(item, index) {
     ? `<span class="watermark">&copy; ${COPYRIGHT_OWNER || ""}</span>`
     : "";
   if (isVideo(item)) {
-    const poster = item.poster || "";
+    const inner = item.poster
+      ? `<img src="${item.poster}" alt="${item.caption || ""}" loading="lazy" />`
+      : `<video src="${item.src}#t=0.1" preload="metadata" muted playsinline aria-label="${item.caption || ""}"></video>`;
     return `<a class="photo video-thumb" data-index="${index}">
-      <img src="${poster}" alt="${item.caption || ""}" loading="lazy" />
+      ${inner}
       <span class="play-icon" aria-hidden="true">&#9654;</span>
       ${wm}
     </a>`;
