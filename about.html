@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About — Todd Hill Photography</title>
+<meta name="author" content="Todd Hill" />
+<meta name="copyright" content="© Todd Hill. All rights reserved." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+<script data-goatcounter="https://toddejhill.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<header class="site-header">
+  <a href="index.html" class="logo">Todd Hill</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="about.html" class="active">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main class="about-page">
+  <div class="about-grid">
+    <div class="about-image" style="background-image:url('https://picsum.photos/id/1027/800/1000');"></div>
+    <div class="about-text">
+      <h1>About</h1>
+      <p class="lede">I'm Todd — a traveler with a camera.</p>
+      <p>For years I've been drawn to the quiet moments between destinations: the way light falls across a quiet street at dawn, the color of a distant horizon, the texture of a place lived in.</p>
+      <p>This site is a collection of those moments. Right now the focus is travel, but expect portraits, landscapes, and more to follow.</p>
+      <p>If you'd like to reach out about a print, a trip, or just to chat — the <a href="contact.html">contact page</a> is open.</p>
+    </div>
+  </div>
+
+  <section class="stats" id="stats">
+    <h2>By the Numbers</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value" data-stat="totalVisitors">—</div>
+        <div class="stat-label">Total Visitors</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" data-stat="totalPhotoViews">—</div>
+        <div class="stat-label">Photo Views</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" data-stat="totalPhotos">—</div>
+        <div class="stat-label">Photos in Catalog</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" data-stat="totalLocations">—</div>
+        <div class="stat-label">Locations</div>
+      </div>
+    </div>
+
+    <h3 class="stats-subhead">Most Viewed</h3>
+    <div class="top-photos" id="top-photos"></div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>&copy; <span id="year"></span> Todd Hill. All images are copyrighted.</p>
+</footer>
+
+<script src="data/galleries.js"></script>
+<script src="js/main.js"></script>
+<script src="js/stats.js"></script>
+</body>
+</html>

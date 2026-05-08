@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact — Todd Hill Photography</title>
+<meta name="author" content="Todd Hill" />
+<meta name="copyright" content="© Todd Hill. All rights reserved." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+<script data-goatcounter="https://toddejhill.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<header class="site-header">
+  <a href="index.html" class="logo">Todd Hill</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="about.html">About</a>
+    <a href="contact.html" class="active">Contact</a>
+  </nav>
+</header>
+
+<main class="contact-page">
+  <div class="contact-inner">
+    <h1>Get in Touch</h1>
+    <p class="subtitle">Prints, collaborations, or questions — I'd love to hear from you.</p>
+
+    <form class="contact-form" action="mailto:your@email.com" method="post" enctype="text/plain">
+      <label>
+        <span>Name</span>
+        <input type="text" name="name" required />
+      </label>
+      <label>
+        <span>Email</span>
+        <input type="email" name="email" required />
+      </label>
+      <label>
+        <span>Message</span>
+        <textarea name="message" rows="6" required></textarea>
+      </label>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+
+    <div class="contact-alt">
+      <p>Or email directly: <a href="mailto:your@email.com">your@email.com</a></p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p>&copy; <span id="year"></span> Todd Hill. All images are copyrighted.</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

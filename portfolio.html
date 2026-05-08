@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Portfolio — Todd Hill Photography</title>
+<meta name="author" content="Todd Hill" />
+<meta name="copyright" content="© Todd Hill. All rights reserved." />
+<meta name="rights" content="All images and videos are © Todd Hill. Unauthorized use is prohibited." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+<script data-goatcounter="https://toddejhill.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<header class="site-header">
+  <a href="index.html" class="logo">Todd Hill</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="portfolio.html" class="active">Portfolio</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main class="portfolio-page">
+  <header class="page-header">
+    <h1>Portfolio</h1>
+    <p class="subtitle">A growing collection of work from around the world.</p>
+  </header>
+
+  <nav class="category-tabs" id="category-tabs"></nav>
+  <div class="gallery" id="gallery"></div>
+</main>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lightbox-stage"></div>
+  <div class="lightbox-bottom">
+    <div class="lightbox-nav">
+      <button class="lightbox-prev" aria-label="Previous">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="lightbox-next" aria-label="Next">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+    <div class="lightbox-caption"></div>
+    <button class="lightbox-close" aria-label="Close">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
+    </button>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <p>&copy; <span id="year"></span> Todd Hill. All images are copyrighted.</p>
+</footer>
+
+<script src="data/galleries.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
