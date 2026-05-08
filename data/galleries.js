@@ -22,6 +22,12 @@ const GALLERIES = {
           { src: "images/travel/greece/Milos_Summer_2024_002.jpg" },
         ],
       },
+      colombia: {
+        name: "Colombia",
+        images: [
+          { type: "video", src: "images/travel/colombia/Monkey_Jungle_2026.mp4" },
+        ],
+      },
     },
   },
 

@@ -4,14 +4,16 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "npm run build:images && npm run build:stats && npm run build:dist",
+    "build": "npm run build:images && npm run build:videos && npm run build:stats && npm run build:dist",
     "build:images": "node scripts/build-images.js",
+    "build:videos": "node scripts/build-videos.js",
     "build:stats": "node scripts/build-stats.js",
     "build:dist": "node scripts/build-dist.js",
     "serve": "http-server -p 8080 -c-1",
     "dev": "npm run build && npm run serve"
   },
   "devDependencies": {
+    "ffmpeg-static": "^5.3.0",
     "http-server": "^14.1.1",
     "sharp": "^0.33.5"
   }

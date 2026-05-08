@@ -55,7 +55,8 @@ async function copyVideos(srcDir, dstDir) {
     const dstPath = path.join(dstDir, entry.name);
     if (entry.isDirectory()) {
       await copyVideos(srcPath, dstPath);
-    } else if (VIDEO_EXT.has(path.extname(entry.name).toLowerCase())) {
+    } else if (VIDEO_EXT.has(path.extname(entry.name).toLowerCase())
+               && !/\.original\.[^.]+$/i.test(entry.name)) {
       await mkdir(path.dirname(dstPath), { recursive: true });
       await cp(srcPath, dstPath);
     }
