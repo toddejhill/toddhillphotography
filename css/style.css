@@ -708,7 +708,15 @@ video.lightbox-media { background: var(--bg); }
 
 .lightbox-bottom button:hover { color: var(--accent); }
 
-.lightbox-close { justify-self: end; }
+.lightbox-tools {
+  display: flex;
+  gap: 0.5rem;
+  justify-self: end;
+}
+
+.lightbox-fullscreen .exit { display: none; }
+.lightbox.is-fullscreen .lightbox-fullscreen .enter { display: none; }
+.lightbox.is-fullscreen .lightbox-fullscreen .exit { display: inline-block; }
 
 .lightbox-caption {
   justify-self: center;

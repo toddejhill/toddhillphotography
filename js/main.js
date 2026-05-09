@@ -257,19 +257,46 @@ if (tabsEl && galleryEl && typeof GALLERIES !== "undefined") {
     trackPhotoView(items[currentIndex]);
   }
 
+  function toggleFullscreen() {
+    if (!lightbox) return;
+    if (document.fullscreenElement || document.webkitFullscreenElement) {
+      (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+      return;
+    }
+    const media = lightbox.querySelector(".lightbox-media");
+    if (!media) return;
+    const req = media.requestFullscreen || media.webkitRequestFullscreen;
+    if (req) {
+      req.call(media).catch(() => {
+        // iOS Safari iPhone: <img> fullscreen unsupported, <video> uses webkitEnterFullscreen.
+        if (media.tagName === "VIDEO" && media.webkitEnterFullscreen) media.webkitEnterFullscreen();
+      });
+      return;
+    }
+    if (media.tagName === "VIDEO" && media.webkitEnterFullscreen) media.webkitEnterFullscreen();
+  }
+
   if (lightbox) {
     lightbox.querySelector(".lightbox-close").addEventListener("click", closeLightbox);
     lightbox.querySelector(".lightbox-prev").addEventListener("click", () => step(-1));
     lightbox.querySelector(".lightbox-next").addEventListener("click", () => step(1));
+    lightbox.querySelector(".lightbox-fullscreen").addEventListener("click", toggleFullscreen);
     lightbox.addEventListener("click", (e) => {
       if (e.target === lightbox) closeLightbox();
     });
     document.addEventListener("keydown", (e) => {
       if (!lightbox.classList.contains("open")) return;
-      if (e.key === "Escape") closeLightbox();
+      if (e.key === "Escape" && !document.fullscreenElement && !document.webkitFullscreenElement) closeLightbox();
       if (e.key === "ArrowLeft") step(-1);
       if (e.key === "ArrowRight") step(1);
+      if (e.key === "f" || e.key === "F") toggleFullscreen();
     });
+    const onFullscreenChange = () => {
+      const inFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
+      lightbox.classList.toggle("is-fullscreen", inFs);
+    };
+    document.addEventListener("fullscreenchange", onFullscreenChange);
+    document.addEventListener("webkitfullscreenchange", onFullscreenChange);
     window.addEventListener("orientationchange", () => lightbox.classList.remove("show-rotate-hint"));
   }
 
